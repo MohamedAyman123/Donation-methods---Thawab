@@ -1,0 +1,248 @@
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { ExternalLink, Copy, Check } from 'lucide-react';
+import { usePixel } from './hooks/usePixel';
+import { PAYMENT_CONFIG } from './config/paymentDetails';
+
+export default function Home() {
+  const { trackCustom } = usePixel();
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedId(id);
+      trackCustom('CopyCode', { method: id });
+      setTimeout(() => setCopiedId(null), 2000);
+    });
+  };
+
+  const handleDonateClick = (campaign: string) => {
+    trackCustom('InitiateDonate', {
+      method: 'kashier',
+      campaign: campaign,
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f8faf9] flex flex-col font-cairo text-[#1a1a1a] leading-relaxed">
+      {/* Top bar */}
+      <div className="bg-[#085041] py-2.5 text-center">
+        <p className="text-[#9FE1CB] text-[13px] font-tajawal">
+          <strong className="text-white">لا تؤجل الخير!</strong> — تبرع الآن، واترك مهمة التوصيل على ثواب
+        </p>
+      </div>
+
+      {/* Hero */}
+      <section className="bg-white border-b border-[#e2e8e5] py-12 text-center">
+        <div className="max-w-[860px] mx-auto px-5">
+          <div className="w-[72px] h-[72px] bg-[#E1F5EE] rounded-full flex items-center justify-center mx-auto mb-5 border-2 border-[#9FE1CB]">
+            <svg viewBox="0 0 36 36" fill="none" className="w-9 h-9">
+              <path d="M18 4C18 4 8 10 8 20C8 25.52 12.48 30 18 30C23.52 30 28 25.52 28 20C28 10 18 4Z" fill="#1D9E75" fillOpacity="0.25"/>
+              <path d="M18 8C18 8 11 13 11 20C11 24.42 14.13 28 18 28C21.87 28 25 24.42 25 20C25 13 18 8Z" fill="#1D9E75" fillOpacity="0.5"/>
+              <path d="M18 13C18 13 14 16.5 14 20C14 22.76 15.79 25 18 25C20.21 25 22 22.76 22 20C22 16.5 18 13Z" fill="#1D9E75"/>
+            </svg>
+          </div>
+          <h1 className="text-[clamp(22px,5vw,32px)] font-black text-[#085041] mb-1.5">مؤسسة ثواب للتنمية</h1>
+          <p className="text-[15px] text-[#5a5a5a] max-w-[480px] mx-auto mb-5">تبرعك يصنع فرقاً حقيقياً في حياة من يحتاجون — اختر المجال الذي يلامس قلبك</p>
+          <span className="inline-block bg-[#1D9E75] text-white text-[13px] font-semibold px-5 py-1.5 rounded-full">
+            تبرع الآن، واترك مهمة التوصيل على ثواب
+          </span>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <main className="max-w-[860px] mx-auto px-5 py-8 w-full">
+        
+        {/* Kashier Section */}
+        <section className="mb-8">
+          <div className="flex items-center gap-2.5 mb-5">
+            <h2 className="text-lg font-bold text-[#1a1a1a]">تبرع عبر كاشير</h2>
+            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#E1F5EE] text-[#0F6E56]">دفع إلكتروني آمن</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+            {PAYMENT_CONFIG.kashierCampaigns.map((camp, idx) => (
+              <motion.div
+                key={camp.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col"
+              >
+                <div className="w-11 h-11 rounded-lg flex items-center justify-center mb-3 text-[22px]" style={{ background: camp.id === 'quran' ? '#E1F5EE' : camp.id === 'eid' ? '#FAEEDA' : camp.id === 'family' ? '#EEEDFE' : camp.id === 'nursery' ? '#E6F1FB' : '#EAF3DE' }}>
+                  {camp.id === 'quran' ? '📖' : camp.id === 'eid' ? '🌙' : camp.id === 'family' ? '🏠' : camp.id === 'nursery' ? '🎒' : '💼'}
+                </div>
+                <h3 className="text-sm font-bold text-[#1a1a1a] mb-1.5 leading-tight">{camp.title}</h3>
+                <p className="text-[12px] text-[#5a5a5a] leading-relaxed mb-3.5 flex-grow">{camp.description}</p>
+                <a
+                  href={camp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => handleDonateClick(camp.id)}
+                  className="inline-flex items-center justify-center gap-1.5 py-2 bg-[#1D9E75] hover:bg-[#0F6E56] text-white rounded-lg text-[13px] font-bold transition-colors w-full no-underline"
+                >
+                  تبرع الآن
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <hr className="border-t border-[#e2e8e5] my-8" />
+
+        {/* Other Payment Methods */}
+        <section className="mb-10">
+          <div className="flex items-center gap-2.5 mb-5">
+            <h2 className="text-lg font-bold text-[#1a1a1a]">طرق تبرع أخرى</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {/* Fawry */}
+            <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-9 h-9 bg-[#FAEEDA] rounded-lg flex items-center justify-center text-lg">🏪</div>
+                <h3 className="text-sm font-bold text-[#1a1a1a]">فوري</h3>
+              </div>
+              <p className="text-[12px] text-[#5a5a5a] mb-2.5 line-height-[1.5]">من أي منفذ فوري أو تطبيق فوري</p>
+              <div className="text-[11px] text-[#888] mb-1">الكود المباشر</div>
+              <div className="flex items-center gap-2 flex-wrap mt-1">
+                <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[13px] font-bold text-[#0F6E56] tracking-[0.5px]">
+                  {PAYMENT_CONFIG.fawry.code}
+                </span>
+                <button
+                  onClick={() => handleCopy(PAYMENT_CONFIG.fawry.code, 'fawry')}
+                  className={`inline-flex items-center gap-1 px-2.5 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'fawry' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                >
+                  {copiedId === 'fawry' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                  {copiedId === 'fawry' ? 'تم النسخ' : 'نسخ'}
+                </button>
+              </div>
+            </div>
+
+            {/* Vodafone Cash */}
+            <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-9 h-9 bg-[#FAECE7] rounded-lg flex items-center justify-center text-lg">📱</div>
+                <h3 className="text-sm font-bold text-[#1a1a1a]">ڤودافون كاش</h3>
+              </div>
+              <p className="text-[12px] text-[#5a5a5a] mb-2.5 leading-[1.5]">من تطبيق "أنا فودافون" أو اتصل بالكود</p>
+              <div className="text-[11px] text-[#888] mb-1">كود الاتصال</div>
+              <div className="flex items-center gap-2 flex-wrap mt-1">
+                <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[13px] font-bold text-[#0F6E56] tracking-[0.5px]">
+                  {PAYMENT_CONFIG.vodafoneCash.dialCode}
+                </span>
+                <button
+                  onClick={() => handleCopy(PAYMENT_CONFIG.vodafoneCash.dialCode, 'vodafone')}
+                  className={`inline-flex items-center gap-1 px-2.5 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'vodafone' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                >
+                  {copiedId === 'vodafone' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                  {copiedId === 'vodafone' ? 'تم النسخ' : 'نسخ'}
+                </button>
+              </div>
+            </div>
+
+            {/* InstaPay */}
+            <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col sm:col-span-2">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-9 h-9 bg-[#E6F1FB] rounded-lg flex items-center justify-center text-lg">💸</div>
+                <h3 className="text-sm font-bold text-[#1a1a1a]">إنستاباي</h3>
+              </div>
+              <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">تحويل فوري من أي بنك مصري</p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <div className="text-[11px] text-[#888] mb-1">رقم الحساب الأول</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[13px] font-bold text-[#0F6E56] tracking-[0.5px] flex-grow text-center">
+                      {PAYMENT_CONFIG.instapay.accounts[0].number}
+                    </span>
+                    <button
+                      onClick={() => handleCopy(PAYMENT_CONFIG.instapay.accounts[0].number, 'instapay1')}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'instapay1' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                    >
+                      {copiedId === 'instapay1' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                      {copiedId === 'instapay1' ? 'تم' : 'نسخ'}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[11px] text-[#888] mb-1">رقم الحساب الثاني</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[13px] font-bold text-[#0F6E56] tracking-[0.5px] flex-grow text-center">
+                      {PAYMENT_CONFIG.instapay.accounts[1].number}
+                    </span>
+                    <button
+                      onClick={() => handleCopy(PAYMENT_CONFIG.instapay.accounts[1].number, 'instapay2')}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'instapay2' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                    >
+                      {copiedId === 'instapay2' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                      {copiedId === 'instapay2' ? 'تم' : 'نسخ'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* QNB */}
+            <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col sm:col-span-2">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-9 h-9 bg-[#EEEDFE] rounded-lg flex items-center justify-center text-lg">🏦</div>
+                <h3 className="text-sm font-bold text-[#1a1a1a]">بنك قطر الوطني (QNB)</h3>
+              </div>
+              <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">تحويل بنكي مباشر — جنيه أو دولار</p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col">
+                  <div className="text-[11px] text-[#888] mb-1">جنيه مصري</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[11px] font-bold text-[#0F6E56] tracking-[0.5px] flex-grow text-center">
+                      {PAYMENT_CONFIG.qnb.egpAccount}
+                    </span>
+                    <button
+                      onClick={() => handleCopy(PAYMENT_CONFIG.qnb.egpAccount, 'qnb_egp')}
+                      className={`inline-flex items-center gap-1 px-2 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'qnb_egp' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                    >
+                      {copiedId === 'qnb_egp' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[11px] text-[#888] mb-1">دولار أمريكي</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[11px] font-bold text-[#0F6E56] tracking-[0.5px] flex-grow text-center">
+                      {PAYMENT_CONFIG.qnb.usdAccount}
+                    </span>
+                    <button
+                      onClick={() => handleCopy(PAYMENT_CONFIG.qnb.usdAccount, 'qnb_usd')}
+                      className={`inline-flex items-center gap-1 px-2 py-1 border border-[#e2e8e5] rounded-md text-[11px] transition-all ${copiedId === 'qnb_usd' ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                    >
+                      {copiedId === 'qnb_usd' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Trust Strip */}
+      <div className="bg-[#085041] py-5 text-center px-5">
+        <p className="text-[#9FE1CB] text-[13px]">
+          🔒 جميع المدفوعات الإلكترونية <strong className="text-white">مؤمّنة بتشفير SSL</strong> عبر بوابة كاشير المعتمدة
+        </p>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-[#04342C] py-6 text-center">
+        <div className="max-w-[860px] mx-auto px-5">
+          <p className="text-[#5DCAA5] text-[12px] leading-relaxed">
+            <strong className="text-white block mb-1">مؤسسة ثواب للتنمية</strong>
+            جميع الحقوق محفوظة &copy; {new Date().getFullYear()}
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}

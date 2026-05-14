@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Tajawal:wght@400;500;700&display=swap');
+
+@theme {
+  --color-green: #1D9E75;
+  --color-green-dark: #085041;
+  --color-green-mid: #0F6E56;
+  --color-green-light: #E1F5EE;
+  --color-green-pale: #F0FAF6;
+  --color-amber: #BA7517;
+  --color-amber-light: #FAEEDA;
+  --color-purple: #534AB7;
+  --color-purple-light: #EEEDFE;
+  --color-blue: #185FA5;
+  --color-blue-light: #E6F1FB;
+  --color-coral: #993C1D;
+  --color-coral-light: #FAECE7;
+  
+  --font-cairo: "Cairo", sans-serif;
+  --font-tajawal: "Tajawal", sans-serif;
+}
+
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --border: #e2e8e5;
+  --bg: #f8faf9;
+  --text: #1a1a1a;
+  --text-muted: #5a5a5a;
+  --text-light: #888;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+}
+
+/* Custom Utility Classes derived from the user's snippet */
+.k-card {
+  @apply bg-white border border-[#e2e8e5] rounded-[18px] p-5 transition-all duration-200 flex flex-col;
+}
+.k-card:hover {
+  @apply border-green -translate-y-0.5;
+}
+
+.btn-donate {
+  @apply inline-flex items-center justify-center gap-1.5 p-2 bg-green text-white border-none rounded-lg text-[13px] font-bold cursor-pointer transition-colors w-full;
+}
+.btn-donate:hover {
+  @apply bg-green-mid;
+}
+
+.o-card {
+  @apply bg-white border border-[#e2e8e5] rounded-[18px] p-5;
+}
+
+.code-box {
+  @apply bg-green-pale border border-[#C5E8DC] rounded-md px-3 py-1 font-tajawal text-[13px] font-bold text-green-mid tracking-[0.5px];
+}
+
+.copy-btn {
+  @apply inline-flex items-center gap-1 px-2.5 py-1 border border-[#e2e8e5] rounded-md bg-transparent text-[11px] font-cairo text-gray-600 cursor-pointer transition-all;
+}
+.copy-btn:hover {
+  @apply bg-green-light text-green-mid border-[#9FE1CB];
+}
+.copy-btn.copied {
+  @apply bg-green-light text-green-mid border-[#9FE1CB];
+}
