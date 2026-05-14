@@ -30,7 +30,7 @@ export const PAYMENT_CONFIG = {
     {
       id: "nursery",
       title: "شراء حضانة للأطفال",
-      description: "مشروع تجهيز حضانات تعليمية للأطفال في المناطق الأكثر احتياجاً",
+      description: "نعمل على توفير حضّانة أطفال للمساعدة في إنقاذ حياة الأطفال حديثي الولادة.",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290104,live",
       icon: "Baby"
     },
