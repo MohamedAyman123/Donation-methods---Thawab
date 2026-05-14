@@ -33,6 +33,8 @@ export const usePixel = () => {
   return { trackCustom, trackStandard };
 };
 
+import React from 'react';
+
 export const PixelProvider = ({ children, pixelId }: { children: React.ReactNode; pixelId: string }) => {
   useEffect(() => {
     if (!pixelId) return;

@@ -35,13 +35,7 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-white border-b border-[#e2e8e5] py-12 text-center">
         <div className="max-w-[860px] mx-auto px-5">
-          <div className="w-[72px] h-[72px] bg-[#E1F5EE] rounded-full flex items-center justify-center mx-auto mb-5 border-2 border-[#9FE1CB]">
-            <svg viewBox="0 0 36 36" fill="none" className="w-9 h-9">
-              <path d="M18 4C18 4 8 10 8 20C8 25.52 12.48 30 18 30C23.52 30 28 25.52 28 20C28 10 18 4Z" fill="#1D9E75" fillOpacity="0.25"/>
-              <path d="M18 8C18 8 11 13 11 20C11 24.42 14.13 28 18 28C21.87 28 25 24.42 25 20C25 13 18 8Z" fill="#1D9E75" fillOpacity="0.5"/>
-              <path d="M18 13C18 13 14 16.5 14 20C14 22.76 15.79 25 18 25C20.21 25 22 22.76 22 20C22 16.5 18 13Z" fill="#1D9E75"/>
-            </svg>
-          </div>
+          <img src="/logo.png" alt="شعار مؤسسة ثواب" className="w-[120px] mx-auto mb-5" />
           <h1 className="text-[clamp(22px,5vw,32px)] font-black text-[#085041] mb-1.5">مؤسسة ثواب للتنمية</h1>
           <p className="text-[15px] text-[#5a5a5a] max-w-[480px] mx-auto mb-5">تبرعك يصنع فرقاً حقيقياً في حياة من يحتاجون — اختر المجال الذي يلامس قلبك</p>
           <span className="inline-block bg-[#1D9E75] text-white text-[13px] font-semibold px-5 py-1.5 rounded-full">
