@@ -11,17 +11,37 @@ export default function Home() {
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setCopiedId(id);
-      trackCustom('CopyCode', { method: id });
+      trackCustom('Lead', {
+  payment_method: id,
+});
+
+if (typeof window !== 'undefined' && window.fbq) {
+  window.fbq('track', 'Lead', {
+    payment_method: id,
+  });
+}
       setTimeout(() => setCopiedId(null), 2000);
     });
   };
 
   const handleDonateClick = (campaign: string) => {
-    trackCustom('InitiateDonate', {
-      method: 'kashier',
-      campaign: campaign,
+  trackCustom('InitiateCheckout', {
+    content_name: campaign,
+    content_category: 'donation',
+    value: 1,
+    currency: 'EGP'
+  });
+
+  // Facebook Pixel direct tracking
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    (window as any).fbq('track', 'InitiateCheckout', {
+      content_name: campaign,
+      content_category: 'donation',
+      value: 1,
+      currency: 'EGP'
     });
-  };
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#f8faf9] flex flex-col font-cairo text-[#1a1a1a] leading-relaxed">
