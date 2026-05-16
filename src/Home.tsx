@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Copy, Check } from 'lucide-react';
+import { ExternalLink, Copy, Check, MessageCircle, Phone, Facebook } from 'lucide-react';
 import { usePixel } from './hooks/usePixel';
 import { PAYMENT_CONFIG } from './config/paymentDetails';
 
@@ -217,6 +217,57 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <hr className="border-t border-[#e2e8e5] my-8" />
+
+        {/* Contact Section */}
+        <section className="mb-10">
+          <div className="flex items-center gap-2.5 mb-5">
+            <h2 className="text-xl font-bold text-[#1a1a1a]">تواصل معنا</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/201222203985"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-[#e2e8e5] rounded-[18px] p-4 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center no-underline"
+            >
+              <div className="w-12 h-12 bg-[#E1F5EE] rounded-full flex items-center justify-center text-[#1D9E75] mb-3">
+                <MessageCircle className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#1a1a1a] mb-1">واتساب</h3>
+              <p className="text-[13px] text-[#5a5a5a] dir-ltr">0122 220 3985</p>
+            </a>
+
+            {/* Phone */}
+            <a
+              href="tel:01119640476"
+              className="bg-white border border-[#e2e8e5] rounded-[18px] p-4 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center no-underline"
+            >
+              <div className="w-12 h-12 bg-[#E1F5EE] rounded-full flex items-center justify-center text-[#1D9E75] mb-3">
+                <Phone className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#1a1a1a] mb-1">اتصال</h3>
+              <p className="text-[13px] text-[#5a5a5a] dir-ltr">0111 964 0476</p>
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com/Thawab.foundation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-[#e2e8e5] rounded-[18px] p-4 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center no-underline"
+            >
+              <div className="w-12 h-12 bg-[#E6F1FB] rounded-full flex items-center justify-center text-[#1877F2] mb-3">
+                <Facebook className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#1a1a1a] mb-1">فيسبوك</h3>
+              <p className="text-[13px] text-[#5a5a5a]">Thawab.foundation</p>
+            </a>
           </div>
         </section>
       </main>
