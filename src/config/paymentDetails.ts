@@ -32,7 +32,8 @@ export const PAYMENT_CONFIG = {
       title: "شراء حضانة للأطفال",
       description: "نعمل على توفير حضّانة أطفال للمساعدة في إنقاذ حياة الأطفال حديثي الولادة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290104,live",
-      icon: "Baby"
+      icon: "Baby",
+      instapay: "20316615389"
     },
     {
       id: "projects",
