@@ -77,3 +77,4 @@
 .copy-btn.copied {
   @apply bg-green-light text-green-mid border-[#9FE1CB];
 }
+.dir-ltr { direction: ltr; display: inline-block; }
