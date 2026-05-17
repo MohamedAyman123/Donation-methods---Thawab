@@ -7,6 +7,11 @@ import { PAYMENT_CONFIG } from './config/paymentDetails';
 export default function Home() {
   const { trackCustom } = usePixel();
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [selectedCases, setSelectedCases] = useState<Record<string, string>>({});
+
+  const handleCaseChange = (campaignId: string, caseUrl: string) => {
+    setSelectedCases(prev => ({ ...prev, [campaignId]: caseUrl }));
+  };
 
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -83,11 +88,28 @@ if (typeof window !== 'undefined' && window.fbq) {
                 transition={{ delay: idx * 0.05 }}
                 className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col"
               >
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3 overflow-hidden" style={{ background: camp.id === 'quran' ? '#E1F5EE' : camp.id === 'eid' ? '#FAEEDA' : camp.id === 'family' ? '#EEEDFE' : camp.id === 'nursery' ? '#E6F1FB' : '#EAF3DE' }}>
-                  <img src={`/icons/${camp.id}.png`} alt={camp.title} className="w-8 h-8 object-contain" />
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3 text-2xl" style={{ background: camp.id === 'quran' ? '#E1F5EE' : camp.id === 'eid' ? '#FAEEDA' : camp.id === 'family' ? '#EEEDFE' : camp.id === 'nursery' ? '#E6F1FB' : '#EAF3DE' }}>
+                  {camp.id === 'quran' ? '📖' : camp.id === 'eid' ? '🌙' : camp.id === 'family' ? '🏠' : camp.id === 'nursery' ? '🎒' : '💼'}
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a] mb-1.5 leading-tight">{camp.title}</h3>
                 <p className="text-[13px] text-[#5a5a5a] leading-relaxed mb-3.5 flex-grow">{camp.description}</p>
+
+                {/* Conditionally render dropdown for cases */}
+                {camp.cases && (
+                  <div className="mb-3">
+                    <label className="text-[11px] text-[#888] mb-1 block">اختر الحالة</label>
+                    <select
+                      className="w-full bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-2 py-1.5 font-tajawal text-[13px] font-bold text-[#0F6E56] outline-none focus:border-[#1D9E75]"
+                      value={selectedCases[camp.id] || camp.url}
+                      onChange={(e) => handleCaseChange(camp.id, e.target.value)}
+                    >
+                      <option value={camp.url}>تبرع عام</option>
+                      {camp.cases.map((c, i) => (
+                        <option key={i} value={c.url}>{c.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 {/* Conditionally render Instapay info for Nursery */}
                 {camp.instapay && (
@@ -109,7 +131,7 @@ if (typeof window !== 'undefined' && window.fbq) {
                 )}
 
                 <a
-                  href={camp.url}
+                  href={selectedCases[camp.id] || camp.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => handleDonateClick(camp.id)}

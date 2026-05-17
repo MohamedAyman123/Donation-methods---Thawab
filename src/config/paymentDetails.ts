@@ -25,7 +25,11 @@ export const PAYMENT_CONFIG = {
       title: "كفالة أسرة",
       description: "توفير الدعم المادي والاجتماعي للأسر المتعففة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live",
-      icon: "Users"
+      icon: "Users",
+      cases: [
+        { name: "حالة رقم 1 (مكنة خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live&case=1" },
+        { name: "حالة رقم 2 (كشك بقالة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live&case=2" }
+      ]
     },
     {
       id: "nursery",
