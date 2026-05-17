@@ -157,7 +157,7 @@ if (typeof window !== 'undefined' && window.fbq) {
             {/* Fawry */}
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-10 h-10 bg-[#FAEEDA] rounded-lg flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 bg-[#ffd300] rounded-lg flex items-center justify-center overflow-hidden">
                   <img src="/icons/fawry.jpg" alt="فوري" className="w-6 h-6 object-contain" />
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">فوري</h3>
@@ -206,7 +206,7 @@ if (typeof window !== 'undefined' && window.fbq) {
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col sm:col-span-2">
               <div className="flex items-center gap-2.5 mb-2">
                 <div className="w-10 h-10 bg-[#E6F1FB] rounded-lg flex items-center justify-center overflow-hidden">
-                  <img src="/icons/instapay.png" alt="إنستاباي" className="w-6 h-6 object-contain" />
+                  <img src="/icons/instapay.png" alt="إنستاباي" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">إنستاباي</h3>
               </div>
