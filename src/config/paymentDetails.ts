@@ -18,7 +18,7 @@ export const PAYMENT_CONFIG = {
       title: "تبرعات عيد الأضحى",
       description: "شارك الفرحة وادخل السرور على قلوب المحتاجين في العيد",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290106,live",
-      icon: "Heart"
+      icon: "🥩"
     },
     {
       id: "family",
@@ -35,7 +35,7 @@ export const PAYMENT_CONFIG = {
       title: "شراء حضانة للأطفال",
       description: "نعمل على توفير حضّانة أطفال للمساعدة في إنقاذ حياة الأطفال حديثي الولادة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290104,live",
-      icon: "Baby",
+      icon: "👶",
       instapay: "20316615389"
     },
     {
