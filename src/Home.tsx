@@ -103,7 +103,7 @@ if (typeof window !== 'undefined' && window.fbq) {
                       value={selectedCases[camp.id] || camp.url}
                       onChange={(e) => handleCaseChange(camp.id, e.target.value)}
                     >
-                      <option value={camp.url}>تبرع عام</option>
+                      <option value={camp.url}>كل الحالات</option>
                       {camp.cases.map((c, i) => (
                         <option key={i} value={c.url}>{c.name}</option>
                       ))}
