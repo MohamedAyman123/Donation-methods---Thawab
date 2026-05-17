@@ -24,11 +24,8 @@ export const PAYMENT_CONFIG = {
       id: "family",
       title: "كفالة أسرة",
       description: "توفير الدعم المادي والاجتماعي للأسر المتعففة",
-      url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290108,live",
-      icon: "Users",
-      cases: [
-        { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" }
-      ]
+      url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live",
+      icon: "Users"
     },
     {
       id: "nursery",
@@ -43,7 +40,10 @@ export const PAYMENT_CONFIG = {
       title: "دعم مشاريع الأسر",
       description: "تمكين الأسر من خلال تمويل مشاريع إنتاجية صغيرة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290108,live",
-      icon: "Briefcase"
+      icon: "Briefcase",
+      cases: [
+        { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" }
+      ]
     }
   ],
 
