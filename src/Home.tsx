@@ -89,7 +89,7 @@ if (typeof window !== 'undefined' && window.fbq) {
                 className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 hover:border-[#1D9E75] hover:-translate-y-0.5 transition-all flex flex-col"
               >
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3 text-2xl" style={{ background: camp.id === 'quran' ? '#E1F5EE' : camp.id === 'eid' ? '#FAEEDA' : camp.id === 'family' ? '#EEEDFE' : camp.id === 'nursery' ? '#E6F1FB' : '#EAF3DE' }}>
-                  {camp.id === 'quran' ? '📖' : camp.id === 'eid' ? '🌙' : camp.id === 'family' ? '🏠' : camp.id === 'nursery' ? '🎒' : '💼'}
+                  {camp.id === 'quran' ? '📖' : camp.id === 'eid' ? '🥩' : camp.id === 'family' ? '👨‍👩‍👧‍👦' : camp.id === 'nursery' ? '👶' : '🏠'}
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a] mb-1.5 leading-tight">{camp.title}</h3>
                 <p className="text-[13px] text-[#5a5a5a] leading-relaxed mb-3.5 flex-grow">{camp.description}</p>
