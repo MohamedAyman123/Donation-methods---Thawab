@@ -24,7 +24,7 @@ export const PAYMENT_CONFIG = {
       id: "family",
       title: "كفالة أسرة",
       description: "توفير الدعم المادي والاجتماعي للأسر المتعففة",
-      url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live",
+      url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290108,live",
       icon: "Users",
       cases: [
         { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" }
