@@ -7,6 +7,11 @@ import { PAYMENT_CONFIG } from './config/paymentDetails';
 export default function Home() {
   const { trackCustom } = usePixel();
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [selectedCases, setSelectedCases] = useState<Record<string, string>>({});
+
+  const handleCaseChange = (campaignId: string, caseUrl: string) => {
+    setSelectedCases(prev => ({ ...prev, [campaignId]: caseUrl }));
+  };
 
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -88,8 +93,45 @@ if (typeof window !== 'undefined' && window.fbq) {
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a] mb-1.5 leading-tight">{camp.title}</h3>
                 <p className="text-[13px] text-[#5a5a5a] leading-relaxed mb-3.5 flex-grow">{camp.description}</p>
+
+                {/* Conditionally render dropdown for cases */}
+                {camp.cases && (
+                  <div className="mb-3">
+                    <label className="text-[11px] text-[#888] mb-1 block">اختر الحالة</label>
+                    <select
+                      className="w-full bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-2 py-1.5 font-tajawal text-[13px] font-bold text-[#0F6E56] outline-none focus:border-[#1D9E75]"
+                      value={selectedCases[camp.id] || camp.url}
+                      onChange={(e) => handleCaseChange(camp.id, e.target.value)}
+                    >
+                      <option value={camp.url}>كل الحالات</option>
+                      {camp.cases.map((c, i) => (
+                        <option key={i} value={c.url}>{c.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {/* Conditionally render Instapay info for Nursery */}
+                {camp.instapay && (
+                  <div className="mb-3">
+                    <div className="text-[11px] text-[#888] mb-1">حساب إنستاباي</div>
+                    <div className="flex items-center gap-2">
+                      <span className="bg-[#F0FAF6] border border-[#C5E8DC] rounded-md px-2 py-1 font-tajawal text-[12px] font-bold text-[#0F6E56] tracking-[0.5px] flex-grow text-center">
+                        {camp.instapay}
+                      </span>
+                      <button
+                        onClick={() => handleCopy(camp.instapay as string, `camp_instapay_${camp.id}`)}
+                        className={`inline-flex items-center justify-center p-1.5 border border-[#e2e8e5] rounded-md transition-all ${copiedId === `camp_instapay_${camp.id}` ? 'bg-[#E1F5EE] text-[#0F6E56] border-[#9FE1CB]' : 'bg-transparent text-[#5a5a5a] hover:bg-[#E1F5EE] hover:text-[#0F6E56] hover:border-[#9FE1CB]'}`}
+                        title="نسخ الرقم"
+                      >
+                        {copiedId === `camp_instapay_${camp.id}` ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 <a
-                  href={camp.url}
+                  href={selectedCases[camp.id] || camp.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => handleDonateClick(camp.id)}
@@ -115,7 +157,9 @@ if (typeof window !== 'undefined' && window.fbq) {
             {/* Fawry */}
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-10 h-10 bg-[#FAEEDA] rounded-lg flex items-center justify-center text-xl">🏪</div>
+                <div className="w-10 h-10 bg-[#FAEEDA] rounded-lg flex items-center justify-center overflow-hidden">
+                  <img src="/icons/fawry.png" alt="فوري" className="w-6 h-6 object-contain" />
+                </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">فوري</h3>
               </div>
               <p className="text-[12px] text-[#5a5a5a] mb-2.5 line-height-[1.5]">من أي منفذ فوري أو تطبيق فوري</p>
@@ -137,7 +181,9 @@ if (typeof window !== 'undefined' && window.fbq) {
             {/* Vodafone Cash */}
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-10 h-10 bg-[#FAECE7] rounded-lg flex items-center justify-center text-xl">📱</div>
+                <div className="w-10 h-10 bg-[#FAECE7] rounded-lg flex items-center justify-center overflow-hidden">
+                  <img src="/icons/vodafone.png" alt="ڤودافون كاش" className="w-6 h-6 object-contain" />
+                </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">ڤودافون كاش</h3>
               </div>
               <p className="text-[12px] text-[#5a5a5a] mb-2.5 leading-[1.5]">من تطبيق "أنا فودافون" أو اتصل بالكود</p>
@@ -159,7 +205,9 @@ if (typeof window !== 'undefined' && window.fbq) {
             {/* InstaPay */}
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col sm:col-span-2">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-10 h-10 bg-[#E6F1FB] rounded-lg flex items-center justify-center text-xl">💸</div>
+                <div className="w-10 h-10 bg-[#E6F1FB] rounded-lg flex items-center justify-center overflow-hidden">
+                  <img src="/icons/instapay.png" alt="إنستاباي" className="w-6 h-6 object-contain" />
+                </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">إنستاباي</h3>
               </div>
               <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">تحويل فوري من أي بنك مصري</p>
@@ -201,7 +249,9 @@ if (typeof window !== 'undefined' && window.fbq) {
             {/* QNB */}
             <div className="bg-white border border-[#e2e8e5] rounded-[18px] p-5 flex flex-col sm:col-span-2">
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-10 h-10 bg-[#EEEDFE] rounded-lg flex items-center justify-center text-xl">🏦</div>
+                <div className="w-10 h-10 bg-[#EEEDFE] rounded-lg flex items-center justify-center overflow-hidden">
+                  <img src="/icons/qnb.png" alt="QNB" className="w-6 h-6 object-contain" />
+                </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">بنك قطر الوطني (QNB)</h3>
               </div>
               <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">تحويل بنكي مباشر — جنيه أو دولار</p>

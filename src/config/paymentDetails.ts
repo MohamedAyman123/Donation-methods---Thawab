@@ -25,14 +25,18 @@ export const PAYMENT_CONFIG = {
       title: "كفالة أسرة",
       description: "توفير الدعم المادي والاجتماعي للأسر المتعففة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live",
-      icon: "Users"
+      icon: "Users",
+      cases: [
+        { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" }
+      ]
     },
     {
       id: "nursery",
       title: "شراء حضانة للأطفال",
       description: "نعمل على توفير حضّانة أطفال للمساعدة في إنقاذ حياة الأطفال حديثي الولادة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290104,live",
-      icon: "Baby"
+      icon: "Baby",
+      instapay: "20316615389"
     },
     {
       id: "projects",
