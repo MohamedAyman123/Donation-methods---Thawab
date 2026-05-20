@@ -210,7 +210,7 @@ if (typeof window !== 'undefined' && window.fbq) {
                 </div>
                 <h3 className="text-base font-bold text-[#1a1a1a]">إنستاباي</h3>
               </div>
-              <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">تحويل فوري من أي بنك مصري</p>
+              <p className="text-[12px] text-[#5a5a5a] mb-3 leading-[1.5]">بنك قطر الوطني (QNB)</p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
