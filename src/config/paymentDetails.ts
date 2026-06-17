@@ -42,7 +42,7 @@ export const PAYMENT_CONFIG = {
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290108,live",
       icon: "Briefcase",
       cases: [
-        { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" }
+        { name: "حالة رقم 1 (مشروع خياطة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290109,live" },
         { name: "حالة رقم 2 (مشروع بقالة)", url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290111,live" }
       ]
     }
