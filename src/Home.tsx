@@ -72,6 +72,99 @@ if (typeof window !== 'undefined' && window.fbq) {
       {/* Main Content */}
       <main className="max-w-[860px] mx-auto px-5 py-8 w-full">
         
+        {/* Gaza Water Campaign Section */}
+        <section className="mb-10 bg-white border-2 border-[#1D9E75] rounded-[18px] p-5 shadow-sm relative overflow-hidden">
+          {/* New Badge */}
+          <div className="absolute top-4 right-4 bg-[#ff4757] text-white text-[11px] font-bold px-3 py-1 rounded-full">
+            جديد
+          </div>
+
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-[#E1F5EE] rounded-full flex items-center justify-center mx-auto mb-3 text-3xl">
+              🚛💧
+            </div>
+            <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">في غزة.. كل قطرة بتفرق</h2>
+            <p className="text-[14px] text-[#5a5a5a] max-w-[500px] mx-auto">
+              شارك في سيارة مياه لأهل غزة كل قطرة بتفرق
+            </p>
+            <div className="mt-3 inline-block bg-[#F0FAF6] border border-[#C5E8DC] text-[#0F6E56] text-[12px] font-bold px-4 py-1.5 rounded-full">
+              تبرع موثوق.. وأثر موثّق
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            {/* Kashier */}
+            <a
+              href="https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290113,live"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleDonateClick('gaza_water')}
+              className="bg-[#1D9E75] hover:bg-[#0F6E56] text-white rounded-lg p-3 flex flex-col items-center justify-center text-center transition-colors no-underline group"
+            >
+              <span className="text-[14px] font-bold mb-1">دفع إلكتروني</span>
+              <span className="text-[11px] opacity-90 flex items-center gap-1">
+                عبر كاشير <ExternalLink className="w-3 h-3 group-hover:translate-x-[-2px] transition-transform" />
+              </span>
+            </a>
+
+            {/* Fawry */}
+            <div className="bg-[#f9fafb] border border-[#e2e8e5] rounded-lg p-3 flex flex-col items-center justify-center text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <img src="/icons/fawry.jpg" alt="فوري" className="w-4 h-4 object-contain rounded" />
+                <span className="text-[13px] font-bold text-[#1a1a1a]">فوري</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-tajawal text-[14px] font-bold text-[#0F6E56] tracking-wider">73066</span>
+                <button
+                  onClick={() => handleCopy('73066', 'gaza_fawry')}
+                  className={`p-1 rounded transition-colors ${copiedId === 'gaza_fawry' ? 'text-[#1D9E75]' : 'text-[#888] hover:text-[#1D9E75]'}`}
+                  title="نسخ الكود"
+                >
+                  {copiedId === 'gaza_fawry' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Vodafone Cash */}
+            <div className="bg-[#f9fafb] border border-[#e2e8e5] rounded-lg p-3 flex flex-col items-center justify-center text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <img src="/icons/vodafone.png" alt="ڤودافون كاش" className="w-4 h-4 object-contain rounded" />
+                <span className="text-[13px] font-bold text-[#1a1a1a]">ڤودافون كاش</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-tajawal text-[14px] font-bold text-[#0F6E56] tracking-wider dir-ltr">#250*9*</span>
+                <button
+                  onClick={() => handleCopy('#250*9*', 'gaza_vodafone')}
+                  className={`p-1 rounded transition-colors ${copiedId === 'gaza_vodafone' ? 'text-[#1D9E75]' : 'text-[#888] hover:text-[#1D9E75]'}`}
+                  title="نسخ الكود"
+                >
+                  {copiedId === 'gaza_vodafone' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Instapay / QNB */}
+            <div className="bg-[#f9fafb] border border-[#e2e8e5] rounded-lg p-3 flex flex-col items-center justify-center text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <img src="/icons/instapay.png" alt="إنستاباي / QNB" className="w-4 h-4 object-contain rounded" />
+                <span className="text-[13px] font-bold text-[#1a1a1a]">إنستاباي / QNB</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-tajawal text-[14px] font-bold text-[#0F6E56] tracking-wider">20314968585</span>
+                <button
+                  onClick={() => handleCopy('20314968585', 'gaza_instapay')}
+                  className={`p-1 rounded transition-colors ${copiedId === 'gaza_instapay' ? 'text-[#1D9E75]' : 'text-[#888] hover:text-[#1D9E75]'}`}
+                  title="نسخ الرقم"
+                >
+                  {copiedId === 'gaza_instapay' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="border-t border-[#e2e8e5] my-8" />
+
         {/* Kashier Section */}
         <section className="mb-8">
           <div className="flex items-center gap-2.5 mb-5">
