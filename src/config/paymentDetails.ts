@@ -6,6 +6,13 @@ export const PAYMENT_CONFIG = {
   tagline: "لا تؤخر العطاء - تبرع الآن ودع 'ثوب' تتولى التوصيل",
   
   kashierCampaigns: [
+     {
+      id: "quran",
+      title: "شنطة مدرسية لطفل",
+      description: "كن سببا في ادخال السرور على طفل",
+      url: https://checkouts.kashier.io/en/prepaymenpages?ppLink=PP-3707290102,live",
+      icon: "bag"
+    },
     {
       id: "quran",
       title: "كفالة حافظ قرآن",
