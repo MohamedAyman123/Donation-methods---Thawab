@@ -7,7 +7,7 @@ export const PAYMENT_CONFIG = {
   
   kashierCampaigns: [
      {
-      id: "quran",
+      id: "bag",
       title: "شنطة مدرسية لطفل",
       description: "كن سببا في ادخال السرور على طفل",
       url: https://checkouts.kashier.io/en/prepaymenpages?ppLink=PP-3707290102,live",
