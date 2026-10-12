@@ -22,7 +22,7 @@ export const PAYMENT_CONFIG = {
     },
     {
       id: "family",
-      title: "كفالة أسرة",
+      title: "كفالة يتيم",
       description: "توفير الدعم المادي والاجتماعي للأسر المتعففة",
       url: "https://checkouts.kashier.io/en/paymentpage?ppLink=PP-3707290105,live",
       icon: "Users"
